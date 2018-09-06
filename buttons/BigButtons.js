@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
   },
   secondaryBtn: {
@@ -46,7 +45,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 20,
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
   }
 });

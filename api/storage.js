@@ -17,7 +17,7 @@ export const getDeck = async (id) => {
 export const saveDeckTitle = async (title) => {
     const deck = {
         title,
-        questions: []
+        questions: [],
     }
 
     try {
@@ -31,15 +31,19 @@ export const addCardToDeck = async (title, card) => {
     const { question, answer } = card
     getDeck(title)
         .then((deck) => {
-            deck.questions.push({
-                question,
-                answer,
-            })
-
-            try {
-                await AsyncStorage.setItem(title, JSON.stringify(deck))
-            } catch (error) {
-                console.log("There was an error saving data: ", error)
-            }
+            let deckObject = JSON.parse(deck)
+            deckObject.questions.push({question, answer})
+            saveDeckAtTitle(title, deckObject)
+                .then(() => {
+                    console.log("Data successfully saved.")
+                })
         })
+}
+
+const saveDeckAtTitle = async (title, deck) => {
+    try {
+        await AsyncStorage.setItem(title, JSON.stringify(deck))
+    } catch (error) {
+        console.log("There was an error saving data: ", error)
+    }
 }
