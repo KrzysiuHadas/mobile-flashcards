@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { PrimaryBtn, SecondaryBtn } from './buttons/BigButtons'
-
+import { getDeck, saveDeckTitle } from './api/storage'
 
 export default class App extends React.Component {
   render() {
@@ -9,13 +9,13 @@ export default class App extends React.Component {
       <View style={styles.container}>    
         <PrimaryBtn 
           onPress={() => {
-            alert("Primary")
+            saveDeckTitle("React")
         }}
         buttonText="Primary Btn" />
 
         <SecondaryBtn 
           onPress={() => {
-            alert("Secondary")
+            getDeck("React").then((deck) => console.log(deck))
         }}
         buttonText="Secondary Btn" />
       </View>
