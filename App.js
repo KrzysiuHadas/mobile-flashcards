@@ -1,13 +1,23 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { PrimaryBtn, SecondaryBtn } from './buttons/BigButtons'
+
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View style={styles.container}>    
+        <PrimaryBtn 
+          onPress={() => {
+            alert("Primary")
+        }}
+        buttonText="Primary Btn" />
+
+        <SecondaryBtn 
+          onPress={() => {
+            alert("Secondary")
+        }}
+        buttonText="Secondary Btn" />
       </View>
     );
   }
@@ -19,5 +29,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
+  }
 });
