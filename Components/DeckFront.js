@@ -4,9 +4,6 @@ import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
 
 const DeckFront = (props) => {
   const { deckName, justAdded, questions } = props.navigation.state.params
-  if(!justAdded) {
-    console.log(questions);
-  }
   return (
     <View style={styles.container}>
       <View style={{ maxHeight: 55, flex: 1, marginTop: 50}}>

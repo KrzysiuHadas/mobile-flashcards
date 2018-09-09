@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, TextInput, Platform } from 'react-native'
 import { PrimaryBtn } from '../buttons/BigButtons'
-import { saveDeckTitle, fillStorageWithData } from '../api/storage'
-import DeckFront from './DeckFront'
+import { saveDeckTitle } from '../api/storage'
 
 
 export default class AddDeck extends Component {
