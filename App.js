@@ -13,30 +13,30 @@ const Tabs = createBottomTabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({tintColor}) => <Ionicons name="ios-browsers" size={25} color={tintColor} />,
+      tabBarIcon: ({ tintColor }) => <Ionicons name="ios-browsers" size={25} color={tintColor} />,
     },
   },
   AddDeck: {
     screen: AddDeck,
     navigationOptions: {
       tabBarLabel: 'Add Deck',
-      tabBarIcon: ({tintColor}) => <FontAwesome name="plus-square" size={25} color={tintColor} />
+      tabBarIcon: ({ tintColor }) => <FontAwesome name="plus-square" size={25} color={tintColor} />
     },
   },
 }, {
-  tabBarOptions: {
-    activeTintColor: 'rgba(80, 135, 246, 1)',
-    style: {
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3,
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
+    tabBarOptions: {
+      activeTintColor: 'rgba(80, 135, 246, 1)',
+      style: {
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
     }
-  }
-})
+  })
 
 
 
@@ -54,18 +54,18 @@ const AndroidTabs = createMaterialTopTabNavigator({
     },
   },
 }, {
-  tabBarOptions: {
-    style: {
-      shadowColor: 'rgba(0, 0, 0, 0.24)',
-      shadowOffset: {
-        width: 0,
-        height: 3,
-      },
-      shadowRadius: 6,
-      shadowOpacity: 1
+    tabBarOptions: {
+      style: {
+        shadowColor: 'rgba(0, 0, 0, 0.24)',
+        shadowOffset: {
+          width: 0,
+          height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1
+      }
     }
-  }
-})
+  })
 
 
 const Stack = createStackNavigator({
@@ -84,13 +84,19 @@ const Stack = createStackNavigator({
 })
 
 export default class App extends React.Component {
-  
+
   render() {
     return (
-        <View style={styles.container}>
-          <View style={{height: Constants.statusBarHeight}}><StatusBar translucent /></View>
-          { <Stack /> }
+      <View style={{ flex: 1 }}>
+        <View style={{ height: Constants.statusBarHeight }}>
+          <StatusBar
+            translucent
+          />
         </View>
+        <View style={styles.container}>
+          {<Stack />}
+        </View>
+      </View>
     )
   }
 }
