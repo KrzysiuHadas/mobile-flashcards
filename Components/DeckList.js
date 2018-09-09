@@ -6,7 +6,8 @@ export default class DeckList extends React.Component {
 
   state = {
     isLoading: true,
-    arrayOfDecks: []
+    arrayOfDecks: [],
+    allDecks: {}
   }
 
   componentDidMount() {
@@ -15,7 +16,8 @@ export default class DeckList extends React.Component {
         const arrayOfDecks = Object.keys(decks)
         this.setState({
           arrayOfDecks,
-          isLoading: false
+          isLoading: false,
+          allDecks: decks
         })
       })
   }
@@ -40,7 +42,7 @@ export default class DeckList extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View>
-                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('DeckFront', { deckName: item.key })}}>
+                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('DeckFront', { deckName: item.key, justAdded: false, questions: this.state.allDecks[item.key].questions })}}>
                     <Text style={styles.listLabel}> 
                       {item.key}
                     </Text>

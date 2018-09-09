@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
   },
   secondaryBtn: {
-    width: 150,
+    width: 300,
     height: 40,
     borderColor: 'rgba(0, 122, 255, 1)',
-    backgroundColor: 'white',
+    // backgroundColor: 'white',
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',

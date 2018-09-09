@@ -16,13 +16,13 @@ export default class AddDeck extends Component {
       saveDeckTitle(this.state.deckName)
         .then(() => {
           console.log("success")
-          this.props.navigation.navigate('DeckFront', { deckName: this.state.deckName })
+          this.props.navigation.navigate('DeckFront', { deckName: this.state.deckName, justAdded: true, questions: [] })
+          this.setState({ deckName: ''})
         })
     }
   }
 
   render() {
-    const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         <View style={{ maxHeight: 35, flex: 1, marginTop: 50}}>
