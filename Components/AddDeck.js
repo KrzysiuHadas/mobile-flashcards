@@ -14,7 +14,6 @@ export default class AddDeck extends Component {
     if(this.state.deckName !== '' ) {
       saveDeckTitle(this.state.deckName)
         .then(() => {
-          console.log("success")
           this.props.navigation.navigate('DeckFront', { deckName: this.state.deckName, justAdded: true, questions: [] })
           this.setState({ deckName: ''})
         })
