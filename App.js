@@ -6,7 +6,6 @@ import AddDeck from './Components/AddDeck'
 import { Ionicons, FontAwesome } from '@expo/vector-icons'
 import { Constants } from 'expo'
 
-
 const Tabs = createBottomTabNavigator({
   DeckList: {
     screen: DeckList,
@@ -68,10 +67,10 @@ const AndroidTabs = createMaterialTopTabNavigator({
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{height: Constants.statusBarHeight}}><StatusBar translucent /></View>
-        { Platform.OS === 'ios' ? <Tabs /> : <AndroidTabs />}
-      </View>
+        <View style={styles.container}>
+          <View style={{height: Constants.statusBarHeight}}><StatusBar translucent /></View>
+          { Platform.OS === 'ios' ? <Tabs /> : <AndroidTabs />}
+        </View>
     )
   }
 }

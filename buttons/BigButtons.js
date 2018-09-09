@@ -1,13 +1,12 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, Platform } from 'react-native'
 
-
 export const PrimaryBtn = (props) => {
   const { onPress, buttonText } = props
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.primaryBtn} >
-      <Text style={{color: 'white'}}>
+      <Text style={{color: 'white', fontWeight: 'bold'}}>
         {buttonText}
       </Text>
     </TouchableOpacity>
@@ -28,7 +27,7 @@ export const SecondaryBtn = (props) => {
 
 const styles = StyleSheet.create({
   primaryBtn: {
-    width: 150,
+    width: 300,
     height: 40,
     borderColor: 'rgba(0, 122, 255, 1)',
     backgroundColor: 'rgba(0, 122, 255, 1)',
