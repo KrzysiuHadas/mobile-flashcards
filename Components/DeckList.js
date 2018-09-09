@@ -53,10 +53,18 @@ export default class DeckList extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View>
-                  <TouchableOpacity onPress={() => { this.props.navigation.navigate('DeckFront', { deckName: item.key, justAdded: false, questions: this.state.allDecks[item.key].questions, }) }}>
-                    <Text style={styles.listLabel}>
-                      {item.key}
-                    </Text>
+                  <TouchableOpacity 
+                    onPress={() => { this.props.navigation.navigate('DeckFront', { deckName: item.key, justAdded: false, questions: this.state.allDecks[item.key].questions, }) }}>
+
+                    <View style={styles.labelRow}>
+                      <Text style={styles.listLabel}>
+                        {item.key}
+                      </Text>
+
+                      <Text style={styles.listLabel}>
+                        {this.state.allDecks[item.key].questions.length}
+                      </Text>
+                    </View>
                   </TouchableOpacity>
                   <View style={{ borderBottomColor: 'rgba(209, 209, 209, 1)', borderBottomWidth: 1 }} />
                 </View>
@@ -79,8 +87,12 @@ const styles = StyleSheet.create({
     fontSize: 32,
   },
   listLabel: {
-    fontSize: 20,
+    fontSize: 23,
+  },
+  labelRow: {
     marginBottom: 5,
     marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
