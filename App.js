@@ -1,57 +1,75 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
-import { PrimaryBtn, SecondaryBtn } from './buttons/BigButtons'
-import { getDeck, saveDeckTitle, addCardToDeck, fillStorageWithData, getDecks } from './api/storage'
+import { StyleSheet, View, Platform } from 'react-native';
+import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
+import DeckList from './Components/DeckList'
+import AddDeck from './Components/AddDeck'
+import { Ionicons, FontAwesome } from '@expo/vector-icons'
+
+const Tabs = createBottomTabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+      tabBarIcon: ({tintColor}) => <Ionicons name="ios-browsers" size={25} color={tintColor} />
+    },
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
+      tabBarIcon: ({tintColor}) => <FontAwesome name="plus-square" size={25} color={tintColor} />
+    },
+  },
+}, {
+  tabBarOptions: {
+    activeTintColor: 'rgba(80, 135, 246, 1)',
+    style: {
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
+  }
+})
+
+const AndroidTabs = createMaterialTopTabNavigator({
+  DeckList: {
+    screen: DeckList,
+    navigationOptions: {
+      tabBarLabel: 'Decks',
+    },
+  },
+  AddDeck: {
+    screen: AddDeck,
+    navigationOptions: {
+      tabBarLabel: 'Add Deck',
+    },
+  },
+}, {
+  tabBarOptions: {
+    style: {
+      shadowColor: 'rgba(0, 0, 0, 0.24)',
+      shadowOffset: {
+        width: 0,
+        height: 3,
+      },
+      shadowRadius: 6,
+      shadowOpacity: 1
+    }
+  }
+})
+
 
 export default class App extends React.Component {
-
-  state = {
-    isLoading: true,
-    arrayOfDecks: []
-  }
-
-  componentDidMount() {
-    getDecks()
-      .then((decks) => {
-        const arrayOfDecks = Object.keys(decks)
-        this.setState({
-          arrayOfDecks,
-          isLoading: false
-        })
-      })
-  }
   render() {
-
-    if (this.state.isLoading) {
-      return <View><Text>Loading...</Text></View>
-    }
     return (
-
       <View style={styles.container}>
-
-        <View style={{ maxHeight: 35, flex: 1, marginTop: 50}}>
-          <Text style={styles.header}>Choose your deck</Text>
-        </View>
-
-        <View style={{ flex: 1, width: 300, marginTop: 50 }}>
-          {<FlatList
-            data={this.state.arrayOfDecks.map((deck) => { return { "key": deck } })}
-            renderItem={({ item }) => {
-              return (
-                <View>
-                  <TouchableOpacity onPress={() => { }}>
-                    <Text style={styles.listLabel}> 
-                      {item.key}
-                    </Text>
-                  </TouchableOpacity>
-                  <View style={{borderBottomColor: 'grgba(209, 209, 209, 1)ray', borderBottomWidth: 1}} />
-                </View>
-              )
-            }}
-          />}
-        </View>
+        { Platform.OS === 'ios' ? <Tabs /> : <AndroidTabs />}
       </View>
-    );
+    )
   }
 }
 
@@ -59,16 +77,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'rgba(233, 237, 239, 1)',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
   },
-  header: {
-    fontSize: 32,
-    fontFamily: 'Helvetica',
-
-  },
-  listLabel: {
-    fontSize: 20,
-    marginBottom: 10,
-  }
 });

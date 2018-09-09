@@ -25,7 +25,17 @@ const initialData = {
         answer: 'The combination of a function and the lexical environment within which that function was declared.'
       }
     ]
-  }
+  },
+  Dalej: {},
+  Elo: {},
+  dsa: {},
+  dsa: {},
+  dfds: {},
+  sdasd: {},
+  dsadas: {},
+  dsaASd: {},
+  dvddv: {},
+  sdxcv: {},
 }
 
 export const getDecks = async () => {
