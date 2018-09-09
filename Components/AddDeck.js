@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text, TextInput, Platform } from 'react-native'
 import { PrimaryBtn } from '../buttons/BigButtons'
+import { saveDeckTitle, fillStorageWithData } from '../api/storage'
+import DeckFront from './DeckFront'
+
 
 export default class AddDeck extends Component {
 
@@ -8,7 +11,18 @@ export default class AddDeck extends Component {
     deckName: ''
   }
 
+  addDeck = () => {
+    if(this.state.deckName !== '' ) {
+      saveDeckTitle(this.state.deckName)
+        .then(() => {
+          console.log("success")
+          this.props.navigation.navigate('DeckFront', { deckName: this.state.deckName })
+        })
+    }
+  }
+
   render() {
+    const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         <View style={{ maxHeight: 35, flex: 1, marginTop: 50}}>
@@ -21,11 +35,12 @@ export default class AddDeck extends Component {
             placeholder='Name'
             value={this.state.deckName}
             style={styles.input}
-            onValueChange={text => this.setState({ deckName: text })} />
+            onChangeText={(text) => this.setState({deckName: text})}
+            />
           <View style={{marginTop: 35}}/>
           <PrimaryBtn
             buttonText="Add"
-            onPress={() => {}}
+            onPress={this.addDeck}
             />
         </View>
       </View>
@@ -53,4 +68,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'white',
   }
-});
+})
+
+

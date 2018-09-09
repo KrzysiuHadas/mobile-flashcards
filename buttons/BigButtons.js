@@ -46,4 +46,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
   }
-});
+})

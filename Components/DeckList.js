@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { getDecks, fillStorageWithData } from '../api/storage'
 
 export default class DeckList extends React.Component {
@@ -40,7 +40,7 @@ export default class DeckList extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View>
-                  <TouchableOpacity onPress={() => { }}>
+                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('DeckFront', { deckName: item.key })}}>
                     <Text style={styles.listLabel}> 
                       {item.key}
                     </Text>
@@ -70,4 +70,4 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     marginTop: 10,
   }
-});
+})

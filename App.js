@@ -1,17 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Platform, StatusBar } from 'react-native';
-import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
+import { createBottomTabNavigator, createMaterialTopTabNavigator, createStackNavigator } from 'react-navigation'
 import DeckList from './Components/DeckList'
 import AddDeck from './Components/AddDeck'
 import { Ionicons, FontAwesome } from '@expo/vector-icons'
 import { Constants } from 'expo'
+import DeckFront from './Components/DeckFront'
+
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: 'Decks',
-      tabBarIcon: ({tintColor}) => <Ionicons name="ios-browsers" size={25} color={tintColor} />
+      tabBarIcon: ({tintColor}) => <Ionicons name="ios-browsers" size={25} color={tintColor} />,
     },
   },
   AddDeck: {
@@ -35,6 +37,8 @@ const Tabs = createBottomTabNavigator({
     }
   }
 })
+
+
 
 const AndroidTabs = createMaterialTopTabNavigator({
   DeckList: {
@@ -64,12 +68,28 @@ const AndroidTabs = createMaterialTopTabNavigator({
 })
 
 
+const Stack = createStackNavigator({
+  Home: {
+    screen: Platform.OS === 'ios' ? Tabs : AndroidTabs,
+    navigationOptions: {
+      header: null
+    }
+  },
+  AddDeck: {
+    screen: AddDeck
+  },
+  DeckFront: {
+    screen: DeckFront
+  },
+})
+
 export default class App extends React.Component {
+  
   render() {
     return (
         <View style={styles.container}>
           <View style={{height: Constants.statusBarHeight}}><StatusBar translucent /></View>
-          { Platform.OS === 'ios' ? <Tabs /> : <AndroidTabs />}
+          { <Stack /> }
         </View>
     )
   }
@@ -80,4 +100,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'rgba(233, 237, 239, 1)',
   },
-});
+})
