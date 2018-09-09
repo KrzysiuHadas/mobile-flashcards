@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native'
 import { getDecks, fillStorageWithData } from '../api/storage'
+import { NavigationEvents } from 'react-navigation'
+
 
 export default class DeckList extends React.Component {
 
@@ -10,16 +12,20 @@ export default class DeckList extends React.Component {
     allDecks: {}
   }
 
-  componentDidMount() {
+  fetchDataAndSetAsState() {
     getDecks()
-      .then((decks) => {
-        const arrayOfDecks = Object.keys(decks)
-        this.setState({
-          arrayOfDecks,
-          isLoading: false,
-          allDecks: decks
-        })
+    .then((decks) => {
+      const arrayOfDecks = Object.keys(decks)
+      this.setState({
+        arrayOfDecks,
+        isLoading: false,
+        allDecks: decks
       })
+    })
+  }
+
+  componentDidMount() {
+    this.fetchDataAndSetAsState()
   }
 
   render() {
@@ -31,7 +37,12 @@ export default class DeckList extends React.Component {
 
       <View style={styles.container}>
 
-        <View style={{ maxHeight: 35, flex: 1, marginTop: 50}}>
+        <NavigationEvents
+          onWillFocus={payload => {
+            this.fetchDataAndSetAsState()
+          }}
+        />
+        <View style={{ maxHeight: 35, flex: 1, marginTop: 50 }}>
           <Text style={styles.header}>Choose your deck</Text>
         </View>
 
@@ -42,12 +53,12 @@ export default class DeckList extends React.Component {
             renderItem={({ item }) => {
               return (
                 <View>
-                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('DeckFront', { deckName: item.key, justAdded: false, questions: this.state.allDecks[item.key].questions })}}>
-                    <Text style={styles.listLabel}> 
+                  <TouchableOpacity onPress={() => { this.props.navigation.navigate('DeckFront', { deckName: item.key, justAdded: false, questions: this.state.allDecks[item.key].questions, }) }}>
+                    <Text style={styles.listLabel}>
                       {item.key}
                     </Text>
                   </TouchableOpacity>
-                  <View style={{borderBottomColor: 'rgba(209, 209, 209, 1)', borderBottomWidth: 1}} />
+                  <View style={{ borderBottomColor: 'rgba(209, 209, 209, 1)', borderBottomWidth: 1 }} />
                 </View>
               )
             }}

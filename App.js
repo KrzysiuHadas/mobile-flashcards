@@ -7,7 +7,6 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import DeckFront from './Components/DeckFront'
 
-
 const Tabs = createBottomTabNavigator({
   DeckList: {
     screen: DeckList,
