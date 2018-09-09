@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, Platform } from 'react-native';
+import { StyleSheet, View, Platform, StatusBar } from 'react-native';
 import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation'
 import DeckList from './Components/DeckList'
 import AddDeck from './Components/AddDeck'
 import { Ionicons, FontAwesome } from '@expo/vector-icons'
+import { Constants } from 'expo'
+
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -67,6 +69,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <View style={{height: Constants.statusBarHeight}}><StatusBar translucent /></View>
         { Platform.OS === 'ios' ? <Tabs /> : <AndroidTabs />}
       </View>
     )

@@ -26,16 +26,6 @@ const initialData = {
       }
     ]
   },
-  Dalej: {},
-  Elo: {},
-  dsa: {},
-  dsa: {},
-  dfds: {},
-  sdasd: {},
-  dsadas: {},
-  dsaASd: {},
-  dvddv: {},
-  sdxcv: {},
 }
 
 export const getDecks = async () => {
