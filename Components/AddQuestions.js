@@ -6,11 +6,21 @@ import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
 export default class AddQuestions extends Component {
   state = {
       question: '',
-      answer: ''
+      answer: '',
+      numberAdded: 0,
   }
 
   addQuestionsToDeck = () => {
+    // add to AsyncStorage
 
+    // clear fields
+
+    // increase numberAdded
+    this.setState((prevState) => ({
+      numberAdded: prevState.numberAdded + 1,
+      question: '',
+      answer: ''
+    }))
   }
 
   render() {
@@ -21,7 +31,16 @@ export default class AddQuestions extends Component {
             Fill the deck with cards
           </Text>
         </View>
-        <View style={{marginTop: 30}}/>
+        <View style={{alignSelf: 'center', marginBottom: 30}}>
+        
+          { 
+          this.state.numberAdded !== 0 &&
+            <Text style={{color: 'rgba(97, 99, 102, 1)', position: "absolute", alignSelf: 'center'}}>
+              Cards in deck: {this.state.numberAdded}
+            </Text>
+          }
+        
+      </View>
         <View style={{flex: 1}} >
           <GenericTextField
             placeholder='Front'
