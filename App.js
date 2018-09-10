@@ -6,6 +6,8 @@ import AddDeck from './Components/AddDeck'
 import { Ionicons, FontAwesome } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import DeckFront from './Components/DeckFront'
+import AddQuestions from './Components/AddQuestions'
+
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -74,9 +76,6 @@ const Stack = createStackNavigator({
       header: null
     }
   },
-  // AddDeck: {
-  //   screen: AddDeck
-  // },
   DeckFront: {
     screen: DeckFront,
     navigationOptions: {
@@ -86,6 +85,15 @@ const Stack = createStackNavigator({
       },
     },
   },
+  AddQuestions: {
+    screen: AddQuestions,
+    navigationOptions: {
+      title: 'Edit deck',
+      headerTitleStyle: {
+        fontSize: 23,
+      }
+    }
+  }
 })
 
 export default class App extends React.Component {

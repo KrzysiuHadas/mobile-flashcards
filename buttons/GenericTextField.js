@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     height: 32,
     borderRadius: Platform.OS === 'ios' ? 3 : 0,
     padding: 8,
-    marginTop: 50,
+    marginTop: 20,
     borderColor: 'rgba(209, 209, 209, 1)',
     borderWidth: 1,
     backgroundColor: 'white',

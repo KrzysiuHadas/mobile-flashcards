@@ -28,6 +28,7 @@ export default class AddDeck extends Component {
             Add a deck
           </Text>
         </View>
+        <View style={{marginTop: 30}}/>
         <View >
           <GenericTextField
             placeholder='Name'
@@ -56,5 +57,3 @@ const styles = StyleSheet.create({
     fontSize: 32,
   }
 })
-
-

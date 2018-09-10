@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
 
+
 const DeckFront = (props) => {
   
   const { deckName, justAdded, questions } = props.navigation.state.params
@@ -31,7 +32,7 @@ const DeckFront = (props) => {
           </View>
       }
         <SecondaryBtn
-          onPress={()=> {}}
+          onPress={()=> {props.navigation.navigate('AddQuestions')}}
           buttonText="Add Questions"
           />
       </View>
