@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, Text, TextInput, Platform } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import { PrimaryBtn } from '../buttons/BigButtons'
 import { saveDeckTitle } from '../api/storage'
-
+import GenericTextField from '../buttons/GenericTextField'
 
 export default class AddDeck extends Component {
 
@@ -29,10 +29,9 @@ export default class AddDeck extends Component {
           </Text>
         </View>
         <View >
-          <TextInput
+          <GenericTextField
             placeholder='Name'
             value={this.state.deckName}
-            style={styles.input}
             onChangeText={(text) => this.setState({deckName: text})}
             />
           <View style={{marginTop: 35}}/>
@@ -55,16 +54,6 @@ const styles = StyleSheet.create({
   },
   header: {
     fontSize: 32,
-  },
-  input: {
-    width: 300,
-    height: 32,
-    borderRadius: Platform.OS === 'ios' ? 3 : 0,
-    padding: 8,
-    marginTop: 50,
-    borderColor: 'rgba(209, 209, 209, 1)',
-    borderWidth: 1,
-    backgroundColor: 'white',
   }
 })
 
