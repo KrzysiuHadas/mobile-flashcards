@@ -15,7 +15,7 @@ export default class DeckList extends React.Component {
   fetchDataAndSetAsState() {
     getDecks()
     .then((decks) => {
-      const arrayOfDecks = Object.keys(decks)
+      const arrayOfDecks = Object.keys(decks).sort()
       this.setState({
         arrayOfDecks,
         isLoading: false,

@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
 
 const DeckFront = (props) => {
+  
   const { deckName, justAdded, questions } = props.navigation.state.params
   return (
     <View style={styles.container}>

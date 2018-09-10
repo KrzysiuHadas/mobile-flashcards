@@ -74,11 +74,17 @@ const Stack = createStackNavigator({
       header: null
     }
   },
-  AddDeck: {
-    screen: AddDeck
-  },
+  // AddDeck: {
+  //   screen: AddDeck
+  // },
   DeckFront: {
-    screen: DeckFront
+    screen: DeckFront,
+    navigationOptions: {
+      title: 'Deck',
+      headerTitleStyle: {
+        fontSize: 23,
+      },
+    },
   },
 })
 
