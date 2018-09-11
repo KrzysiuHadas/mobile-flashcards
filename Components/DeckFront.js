@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
 import { getDeck } from '../api/storage'
-
+import { NavigationEvents } from 'react-navigation'
 
 export default class DeckFront extends React.Component {
   state = {
@@ -10,7 +10,7 @@ export default class DeckFront extends React.Component {
     isLoading: true,
   }
 
-  componentDidMount() {
+  getQuestionNumberAndSetAsState() {
     const { deckName } = this.props.navigation.state.params
     getDeck(deckName)
     .then((deck) => {
@@ -20,6 +20,10 @@ export default class DeckFront extends React.Component {
         isLoading: false,
       }))
     })
+  }
+
+  componentDidMount() {
+    this.getQuestionNumberAndSetAsState()
   }
 
   render() {
@@ -32,6 +36,11 @@ export default class DeckFront extends React.Component {
     console.log(questions)
     return (
       <View style={styles.container}>
+      <NavigationEvents
+          onWillFocus={() => {
+            this.getQuestionNumberAndSetAsState()
+          }}
+        />
         <View style={{ maxHeight: 55, flex: 1, marginTop: 50 }}>
           <Text style={styles.header}>
             {deckName}
