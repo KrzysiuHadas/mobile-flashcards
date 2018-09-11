@@ -25,6 +25,18 @@ export const SecondaryBtn = (props) => {
   )
 }
 
+export const RedBtn = (props) => {
+  const { onPress, buttonText} = props
+
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.redBtn]} >
+      <Text style={{color: 'rgba(232, 50, 37, 1)'}}>
+        {buttonText}
+      </Text>
+    </TouchableOpacity>
+  )
+}
+
 const styles = StyleSheet.create({
   primaryBtn: {
     width: 300,
@@ -40,10 +52,18 @@ const styles = StyleSheet.create({
     width: 300,
     height: 40,
     borderColor: 'rgba(0, 122, 255, 1)',
-    // backgroundColor: 'white',
     borderWidth: 1,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
-  }
+  },
+  redBtn: {
+      width: 300,
+      height: 40,
+      borderColor: 'rgba(232, 50, 37, 1)',
+      borderWidth: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: Platform.OS === 'ios' ? 10 : 0,
+  },
 })
