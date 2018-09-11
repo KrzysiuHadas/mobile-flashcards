@@ -1,29 +1,38 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, Animated } from 'react-native'
 import GenericTextField from '../buttons/GenericTextField'
-import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
+import { PrimaryBtn } from '../buttons/BigButtons'
 
 export default class AddQuestions extends Component {
   state = {
       question: '',
       answer: '',
-      numberAdded: 0,
+      isCardAdded: false,
+      bounceValue: new Animated.Value(1),
   }
 
   addQuestionsToDeck = () => {
-    // add to AsyncStorage
+    if( this.state.question !== '' && this.state.answer !== '') {
+      // add to AsyncStorage
+      // clear fields
 
-    // clear fields
+      this.setState(() => ({
+        isCardAdded: true,
+        question: '',
+        answer: ''
+      }))
 
-    // increase numberAdded
-    this.setState((prevState) => ({
-      numberAdded: prevState.numberAdded + 1,
-      question: '',
-      answer: ''
-    }))
+      const { bounceValue } = this.state
+      
+      Animated.sequence([
+        Animated.timing(bounceValue, { duration: 200, toValue: 1.2 }),
+        Animated.spring(bounceValue, { toValue: 1, friction: 4 })
+      ]).start()
+    }
   }
 
   render() {
+    const { bounceValue } = this.state
     return (
       <View style={styles.container}>
         <View style={{ maxHeight: 30, flex: 1, marginTop: 50}}>
@@ -34,10 +43,10 @@ export default class AddQuestions extends Component {
         <View style={{alignSelf: 'center', marginBottom: 30}}>
         
           { 
-          this.state.numberAdded !== 0 &&
-            <Text style={{color: 'rgba(97, 99, 102, 1)', position: "absolute", alignSelf: 'center'}}>
-              Cards in deck: {this.state.numberAdded}
-            </Text>
+          this.state.isCardAdded === true &&
+            <Animated.Text style={{color: 'rgba(97, 99, 102, 1)', position: "absolute", alignSelf: 'center', transform: [{scale: bounceValue}]}}>
+              Card added!
+            </Animated.Text>
           }
         
       </View>
