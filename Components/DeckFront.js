@@ -26,12 +26,6 @@ export default class DeckFront extends React.Component {
     this.getQuestionNumberAndSetAsState()
   }
 
-  startQuiz = () => {
-    clearLocalNotification()
-      .then(setLocalNotification)
-    this.props.navigation.navigate('AddQuestions', { deckName: deckName }) 
-  }
-
   render() {
     const { deckName, justAdded } = this.props.navigation.state.params
     const questions = this.state.numberOfCards
@@ -64,14 +58,18 @@ export default class DeckFront extends React.Component {
             justAdded === false && questions != 0 &&
             <View>
               <PrimaryBtn
-                onPress={() => { this.props.navigation.navigate('Quiz', { deckName: deckName})}}
+                onPress={() => {
+                  clearLocalNotification()
+                    .then(setLocalNotification)
+                  this.props.navigation.navigate('Quiz', { deckName: deckName})
+                }}
                 buttonText="Start Quiz"
               />
               <View style={{ marginTop: 20 }} />
             </View>
           }
           <SecondaryBtn
-            onPress={() => { }}
+            onPress={() => { this.props.navigation.navigate('AddQuestions', { deckName: deckName }) }}
             buttonText="Add Questions"
           />
         </View>
