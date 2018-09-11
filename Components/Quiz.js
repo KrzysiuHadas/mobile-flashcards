@@ -1,9 +1,36 @@
 import React, { Component } from 'react'
 import { View, Text, StyleSheet, Platform, ScrollView } from 'react-native'
 import FlipCard from 'react-native-flip-card'
+import { getDeck } from '../api/storage'
 
 export default class Quiz extends Component {
+  state = {
+    deck: {},
+    isLoading: true,
+  }
+
+  getTheDeck() {
+    const { deckName } = this.props.navigation.state.params
+    
+    getDeck(deckName)
+      .then((deck) => {
+        this.setState({
+          deck,
+          isLoading: false
+        })
+      })
+  }
+
+  componentDidMount() {
+    this.getTheDeck()
+  }
+
   render() {
+    
+    if (this.state.isLoading) {
+      return <View><Text>Loading...</Text></View>
+    }
+
     const { deckName } = this.props.navigation.state.params
     return (
       <View style={styles.container}>
@@ -45,7 +72,7 @@ const styles = StyleSheet.create({
     height: 400,
     borderRadius: Platform.OS === 'ios' ? 10 : 0,
     borderWidth: 1,
-    borderColor: 'rgba(97, 99, 102, 1)',
+    borderColor: 'rgba(97, 99, 102, 0.5)',
     backgroundColor: 'white',
     shadowColor: 'rgba(0, 0, 0, 0.24)',
     shadowOffset: {
