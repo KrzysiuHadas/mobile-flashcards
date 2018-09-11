@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native'
 import { PrimaryBtn, SecondaryBtn } from '../buttons/BigButtons'
-import { getDeck } from '../api/storage'
+import { getDeck, clearLocalNotification, setLocalNotification } from '../api/storage'
 import { NavigationEvents } from 'react-navigation'
 
 export default class DeckFront extends React.Component {
@@ -24,6 +24,12 @@ export default class DeckFront extends React.Component {
 
   componentDidMount() {
     this.getQuestionNumberAndSetAsState()
+  }
+
+  startQuiz = () => {
+    clearLocalNotification()
+      .then(setLocalNotification)
+    this.props.navigation.navigate('AddQuestions', { deckName: deckName }) 
   }
 
   render() {
@@ -65,7 +71,7 @@ export default class DeckFront extends React.Component {
             </View>
           }
           <SecondaryBtn
-            onPress={() => { this.props.navigation.navigate('AddQuestions', { deckName: deckName }) }}
+            onPress={() => { }}
             buttonText="Add Questions"
           />
         </View>
