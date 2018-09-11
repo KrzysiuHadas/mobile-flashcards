@@ -41,12 +41,11 @@ export default class AddQuestions extends Component {
 
   render() {
     const { bounceValue } = this.state
-    const { deckName } = this.props.navigation.state.params
     return (
       <View style={styles.container}>
         <View style={{ maxHeight: 30, flex: 1, marginTop: 50}}>
           <Text style={styles.header}>
-            Fill the deck with cards {deckName}
+            Fill the deck with cards
           </Text>
         </View>
         <View style={{alignSelf: 'center', marginBottom: 30}}>

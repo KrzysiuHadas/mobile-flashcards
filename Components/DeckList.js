@@ -38,7 +38,7 @@ export default class DeckList extends React.Component {
       <View style={styles.container}>
 
         <NavigationEvents
-          onWillFocus={payload => {
+          onWillFocus={() => {
             this.fetchDataAndSetAsState()
           }}
         />
