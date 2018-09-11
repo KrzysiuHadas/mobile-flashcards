@@ -32,7 +32,7 @@ const DeckFront = (props) => {
           </View>
       }
         <SecondaryBtn
-          onPress={()=> {props.navigation.navigate('AddQuestions')}}
+          onPress={()=> {props.navigation.navigate('AddQuestions', { deckName: deckName })}}
           buttonText="Add Questions"
           />
       </View>

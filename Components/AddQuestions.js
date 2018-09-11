@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { View, Text, StyleSheet, Animated } from 'react-native'
 import GenericTextField from '../buttons/GenericTextField'
 import { PrimaryBtn } from '../buttons/BigButtons'
-
+import { addCardToDeck } from '../api/storage'
 export default class AddQuestions extends Component {
+
   state = {
       question: '',
       answer: '',
@@ -12,32 +13,40 @@ export default class AddQuestions extends Component {
   }
 
   addQuestionsToDeck = () => {
-    if( this.state.question !== '' && this.state.answer !== '') {
-      // add to AsyncStorage
-      // clear fields
+    const { bounceValue, question, answer } = this.state    
+    const { deckName } = this.props.navigation.state.params
+    if( question !== '' && answer !== '') {
+      
+      const card = {
+        question,
+        answer
+      }
+
+      addCardToDeck(deckName, card)
+
+          Animated.sequence([
+            Animated.timing(bounceValue, { duration: 200, toValue: 1.2 }),
+            Animated.spring(bounceValue, { toValue: 1, friction: 4 })
+          ]).start()
+
 
       this.setState(() => ({
         isCardAdded: true,
         question: '',
         answer: ''
       }))
-
-      const { bounceValue } = this.state
       
-      Animated.sequence([
-        Animated.timing(bounceValue, { duration: 200, toValue: 1.2 }),
-        Animated.spring(bounceValue, { toValue: 1, friction: 4 })
-      ]).start()
     }
   }
 
   render() {
     const { bounceValue } = this.state
+    const { deckName } = this.props.navigation.state.params
     return (
       <View style={styles.container}>
         <View style={{ maxHeight: 30, flex: 1, marginTop: 50}}>
           <Text style={styles.header}>
-            Fill the deck with cards
+            Fill the deck with cards {deckName}
           </Text>
         </View>
         <View style={{alignSelf: 'center', marginBottom: 30}}>
