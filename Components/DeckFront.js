@@ -33,7 +33,7 @@ export default class DeckFront extends React.Component {
     if (this.state.isLoading) {
       return <View><Text>Loading...</Text></View>
     }
-    console.log(questions)
+
     return (
       <View style={styles.container}>
       <NavigationEvents
@@ -58,7 +58,7 @@ export default class DeckFront extends React.Component {
             justAdded === false && questions != 0 &&
             <View>
               <PrimaryBtn
-                onPress={() => { }}
+                onPress={() => { this.props.navigation.navigate('Quiz', { deckName: deckName})}}
                 buttonText="Start Quiz"
               />
               <View style={{ marginTop: 20 }} />

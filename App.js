@@ -7,7 +7,7 @@ import { Ionicons, FontAwesome } from '@expo/vector-icons'
 import { Constants } from 'expo'
 import DeckFront from './Components/DeckFront'
 import AddQuestions from './Components/AddQuestions'
-
+import Quiz from './Components/Quiz'
 
 const Tabs = createBottomTabNavigator({
   DeckList: {
@@ -89,6 +89,15 @@ const Stack = createStackNavigator({
     screen: AddQuestions,
     navigationOptions: {
       title: 'Edit deck',
+      headerTitleStyle: {
+        fontSize: 23,
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
+    navigationOptions: {
+      title: 'Quiz',
       headerTitleStyle: {
         fontSize: 23,
       }
